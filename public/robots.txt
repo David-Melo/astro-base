@@ -1,0 +1,12 @@
+# robots.txt for Florida Termite Guys
+
+User-agent: *
+Allow: /
+
+# Disallow admin, debug, and development pages
+Disallow: /launch-checklist-debug
+Disallow: /silo-debug
+Disallow: /content-section-demo
+
+# Sitemap
+Sitemap: https://floridatermiteguys.com/sitemap.xml

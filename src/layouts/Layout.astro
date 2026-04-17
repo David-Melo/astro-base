@@ -1,23 +1,92 @@
+---
+import '../styles/global.css';
+import { generateLocalBusinessSchema } from '../utils/structuredData';
+
+/**
+ * Props for the base Layout.
+ * NOTE: This layout should only be used at the top level of files in src/pages/.
+ * It should NEVER be nested inside other components or used within MDX content.
+ */
+ export interface Props {
+	/** The page title used in <title> and Open Graph tags. */
+	title?: string;
+	/** The page description used in <meta name="description"> and Open Graph tags. */
+	description?: string;
+	/** Optional canonical URL for the page. */
+	canonical?: string;
+	/** Robots meta tag value (defaults to "index, follow"). */
+	robots?: string;
+	/** Optional SEO keywords meta tag. */
+	keywords?: string;
+	/** Array of JSON-LD schema objects to inject into the <head>. */
+	jsonLd?: object[];
+	/** Optional Open Graph image URL. */
+	ogImage?: string;
+}
+
+const { 
+	title = "Site Title",
+	description = "Site Description",
+	canonical,
+	robots = "index, follow",
+	keywords,
+	jsonLd = [],
+	ogImage
+} = Astro.props;
+
+// Always generate canonical URL - use provided value or derive from current URL
+const siteBase = Astro.site?.href || 'https://site.com/';
+const canonicalUrl = canonical 
+	? new URL(canonical, siteBase).href 
+	: new URL(Astro.url.pathname, siteBase).href;
+const currentUrl = canonicalUrl;
+const defaultOgImage = `${siteBase}og-image.jpg`;
+
+// Always include LocalBusiness schema on every page
+const localBusinessSchema = generateLocalBusinessSchema();
+const allSchemas = [localBusinessSchema, ...jsonLd];
+
+---
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+		<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+		<link rel="manifest" href="/site.webmanifest" />
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta name="robots" content={robots} />
+		<link rel="canonical" href={canonicalUrl} />
+		{keywords && <meta name="keywords" content={keywords} />}
+		<!-- Open Graph / Social Media -->
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={currentUrl} />
+		<meta property="og:site_name" content="Florida Termite Guys" />
+		<meta property="og:image" content={ogImage || defaultOgImage} />
+		<!-- Twitter Card -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImage || defaultOgImage} />
+		<!-- JSON-LD Structured Data -->
+		{allSchemas.map((schema) => (
+			<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+		))}
+		<!-- Additional head content -->
+		<slot name="head" />
 	</head>
-	<body>
-		<slot />
+	<body class="min-h-screen flex flex-col pb-16 md:pb-0">
+		<main class="grow">
+			<slot />
+		</main>
+		<script>
+			import "preline";
+		</script>
 	</body>
-</html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+</html> 
