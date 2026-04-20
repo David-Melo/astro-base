@@ -1,0 +1,257 @@
+---
+alwaysApply: false
+---
+# Generate Project Documentation
+
+Use this rule to generate or regenerate all project documentation. This is the **single command** for creating/updating all project docs.
+
+## What Gets Generated
+
+When invoked with `@generate-overview`, you must generate **four files**:
+
+| File | Purpose | Audience |
+|------|---------|----------|
+| `.claude/rules/overview.mdc` | Technical stack knowledge base | AI agents (always applied) |
+| `CLAUDE.md` | LLM Agents Stack Overview | AI agents (always applied) |
+| `SITE_OVERVIEW.md` | Implementation summary | Stakeholders, handoff |
+| `README.md` | Developer documentation | Contributors |
+
+---
+
+## Sources of Truth
+
+### Client-Specific (from `docs/`)
+- `docs/strategy_blueprint.md` → Client name, brand identity, USPs, contact info, executive summary
+- `docs/brand_palette.md` → Color system with hex values and usage
+- `docs/sitemap.md` → Page structure and routes
+- `docs/design-brief.md` → Design requirements (if present)
+
+### Project-Specific (from codebase)
+- `package.json` → Dependencies and versions
+- `src/components/` → Component inventory (list and count)
+- `src/pages/` → Implemented pages
+- `src/content/` → MDX content files
+- `src/styles/` → Styling architecture (colors.css, typography.css, global.css)
+- `public/` → Assets and fonts
+- `astro.config.mjs` → Integrations and Vite plugins
+- `tsconfig.json` → Path aliases and compiler options
+- `postcss.config.cjs` → PostCSS processors
+
+---
+
+## Step-by-Step Instructions
+
+### Step 1: Gather Information
+
+1. **Read client identity** from `docs/strategy_blueprint.md`:
+   - Client name and tagline
+   - Executive summary (who they are, what they offer)
+   - Target audience and GEO
+   - Tone of voice
+   - Key differentiators (USPs)
+   - Contact information
+
+2. **Read brand colors** from `docs/brand_palette.md`:
+   - Primary, secondary, accent colors with hex values
+   - Design aesthetic/vibe
+
+3. **Scan the codebase**:
+   - List all components in `src/components/` with count
+   - List all pages in `src/pages/`
+   - List MDX content files in `src/content/`
+   - Check `src/styles/` for styling files
+   - Check `public/fonts/` for font files
+   - Check `public/assets/` for asset organization
+
+4. **Read dependencies** from `package.json`:
+   - Framework versions (Astro, Tailwind, etc.)
+   - All relevant dependencies with versions
+
+5. **Check configurations**:
+   - `astro.config.mjs` for integrations
+   - `tsconfig.json` for path aliases
+   - `postcss.config.cjs` for processors
+
+---
+
+### Step 2: Generate `.cursor/rules/overview.mdc`
+
+Create the technical stack knowledge base. This file is **always applied** to give AI agents context about the project.
+
+**Structure:**
+```markdown
+---
+alwaysApply: true
+---
+
+# Project Overview
+
+## Project Type
+This is a **[Client Name]** business website built with **Astro** (v[X.X.X]), **Tailwind CSS v4**, **Preline UI**, and **MDX** for content management.
+
+## Tech Stack
+[List all dependencies with versions, organized by category]
+
+## Project Structure
+[Tree diagram of src/, public/, docs/, and config files]
+
+## TypeScript Configuration
+[Path aliases and compiler options]
+
+## Build & Development
+[Scripts and configuration notes]
+
+## Typography
+[Font family and variants]
+
+## Current State
+[Implemented features with ✅, In Development with 🔄]
+
+## Key Notes
+[Project-specific constraints and conventions]
+```
+
+---
+
+### Step 3: Generate `SITE_OVERVIEW.md`
+
+Create the implementation summary using the template from `@generate-site-overview.mdc`.
+
+**Structure:**
+```markdown
+# [Client Name] - Website Implementation Summary
+
+## 🎉 Project Status
+## 🎨 Brand Implementation (colors, typography, icons)
+## 📦 Components Created (full list with descriptions)
+## 📄 Pages & Content (routes and status)
+## 🚀 Key Features (conversion, UX, SEO)
+## 🛠 Technical Stack
+## 📱 Responsive Breakpoints
+## 🎯 Next Steps
+## ✅ Build Status
+## 🚀 Deployment
+## 📞 Contact Information
+```
+
+---
+
+### Step 4: Generate `README.md`
+
+Create developer documentation for contributors.
+
+**Template:**
+```markdown
+# [Client Name] Website
+
+[One-sentence description from strategy blueprint executive summary]
+
+## Tech Stack
+
+- **Framework**: Astro [version]
+- **Styling**: Tailwind CSS [version] + Preline UI
+- **Content**: MDX
+- **Icons**: Phosphor Icons via Iconify
+- **Language**: TypeScript (strict mode)
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- Yarn
+
+### Installation
+
+\`\`\`bash
+yarn install
+\`\`\`
+
+### Development
+
+\`\`\`bash
+yarn dev
+\`\`\`
+
+Open [http://localhost:4321](http://localhost:4321) in your browser.
+
+## Project Structure
+
+\`\`\`
+src/
+├── components/    # Reusable Astro components ([X] components)
+├── content/       # MDX content collections
+├── layouts/       # Page layouts
+├── pages/         # File-based routing
+└── styles/        # Global CSS (colors, typography)
+
+public/
+├── assets/        # Images organized by page
+└── fonts/         # Custom font files
+
+docs/
+├── strategy_blueprint.md   # Brand strategy
+├── brand_palette.md        # Color system
+└── ...                     # Other client docs
+\`\`\`
+
+## Scripts
+
+| Command | Description |
+|---------|-------------|
+| \`yarn dev\` | Start development server |
+| \`yarn build\` | Build for production |
+| \`yarn preview\` | Preview production build |
+
+## Deployment
+
+Build the site:
+
+\`\`\`bash
+yarn build
+\`\`\`
+
+Deploy the \`dist/\` directory to any static host (Vercel, Netlify, Cloudflare Pages, etc.)
+
+## Documentation
+
+- [Astro Docs](https://docs.astro.build)
+- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+- [Preline UI](https://preline.co/docs)
+```
+
+---
+
+## Quick Commands
+
+**Generate all docs:**
+```
+@generate-overview generate all project documentation
+```
+
+**After major changes:**
+```
+@generate-overview regenerate docs with current state
+```
+
+**For a new project:**
+```
+@generate-overview create initial project documentation
+```
+
+---
+
+## Checklist
+
+Before finishing, verify:
+
+- [ ] `overview.mdc` has correct client name from `docs/strategy_blueprint.md`
+- [ ] `overview.mdc` has accurate component count from `src/components/`
+- [ ] `overview.mdc` has current dependency versions from `package.json`
+- [ ] `overview.mdc` has correct path aliases from `tsconfig.json`
+- [ ] `SITE_OVERVIEW.md` lists all components with descriptions
+- [ ] `SITE_OVERVIEW.md` lists all implemented pages with routes
+- [ ] `SITE_OVERVIEW.md` has colors from `docs/brand_palette.md`
+- [ ] `SITE_OVERVIEW.md` has contact info from `docs/strategy_blueprint.md`
+- [ ] `README.md` has correct tech stack versions
+- [ ] `README.md` has accurate component count
