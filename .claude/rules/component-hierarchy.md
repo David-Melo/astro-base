@@ -213,6 +213,8 @@ Every component MUST include a `@level` tag in its JSDoc:
 
 ### When Using Silo Registry
 
+- Treat `src/components/component-registry.json` as the primary approved component catalog.
+- Treat `src/components/silo-registry.json` as a silo-specific filtered subset of that broader catalog.
 - Only `@level section` components should be in the `allowed` list
 - All `@level atom` components must be in the `excluded` list
 
@@ -253,5 +255,6 @@ If you encounter an Atom used at top-level (like `StatsBar` without wrapper):
 When adding new components:
 1. Classify as Section or Atom based on the criteria above
 2. Add `@level section` or `@level atom` to JSDoc
-3. Update `silo-registry.json` accordingly
-4. Run component documentation regeneration
+3. Update `component-registry.json`
+4. Update `silo-registry.json` accordingly when the component is relevant to silo pages
+5. Run component documentation regeneration

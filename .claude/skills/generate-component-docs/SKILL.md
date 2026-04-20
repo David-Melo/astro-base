@@ -127,7 +127,9 @@ When triggered with "@generate-component-docs":
       - `@usage` (for atoms, show wrapped in Section; for sections, show standalone)
       - `@semantic` optimization notes.
 4. **Validation**: Ensure the updated code remains valid Astro/TypeScript.
-5. **Registry Sync**: Update `silo-registry.json` if needed:
+5. **Registry Sync**:
+   - Update `src/components/component-registry.json` so the approved component catalog stays current
+   - Update `silo-registry.json` if needed for silo-specific eligibility:
     - `section` components may be added to `allowed`
     - `atom` components MUST be in `excluded`
 
@@ -144,15 +146,18 @@ When triggered with "@generate-component-docs":
 
 After adding or documenting components, update the silo registry based on component level:
 
-1. **Check the registry**: Read `src/components/silo-registry.json`
-2. **Apply hierarchy rules**:
+1. **Check the primary registry**: Read `src/components/component-registry.json`
+2. **Check the silo registry**: Read `src/components/silo-registry.json`
+3. **Apply hierarchy rules**:
    - **`@level section`** components → May be added to `allowed` (if suitable for programmatic pages)
    - **`@level atom`** components → MUST be in `excluded` (they cannot be used at top level)
-3. **Section exceptions** (still excluded despite being sections):
+4. **Section exceptions** (still excluded despite being sections):
    - Special-purpose sections (e.g., `HeroForm` for lead-gen pages only)
    - Components that require specific context
-4. **Update registry with reasons**: Add to `allowed` or `excluded` with clear reason in `excludeReasons`
-5. **Run silo sync**: Invoke the `silo-sync-agent` to update `SiloPage.astro`
+5. **Update registries with reasons**:
+   - keep `component-registry.json` as the full approved catalog
+   - keep `silo-registry.json` as the silo-specific filtered subset
+6. **Run silo sync**: Invoke the `silo-sync-agent` to update `SiloPage.astro`
 
 **Critical Rule**: If a component is `@level atom`, it MUST NEVER be in the `allowed` list. Atoms used at page level will result in broken layouts without proper padding and headings.
 

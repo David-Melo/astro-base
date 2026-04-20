@@ -197,13 +197,13 @@ featuredImage: "/assets/home/service_inspection.webp"
 featuredImageAlt: "Professional service provider working in a real-world setting"
 ```
 
-### Creating New Images with Placeholder Agent
+### Creating New Images With Placeholder Rules
 
 When a blog post needs a custom image that doesn't exist:
 
-1. **During writing**, use the `@image_placeholder_agent` to generate a placeholder:
+1. **During writing**, follow `.claude/rules/image-placeholders.md` to generate a placeholder:
 
-   Request from the placeholder agent:
+   Use inputs like:
    ```
    image_id: blog_primary_topic_hero
    width: 1200
@@ -228,7 +228,7 @@ When a blog post needs a custom image that doesn't exist:
 ### Image Workflow Summary
 
 1. **Write blog post** with placeholder URL or existing image
-2. **Invoke `@image_placeholder_agent`** if you need a custom image description
+2. **Use `.claude/rules/image-placeholders.md`** if you need a custom image description
 3. **After approval**, run `yarn images:scan` then `yarn images:generate`
 4. **Verify** the generated image and commit
 
@@ -425,20 +425,17 @@ Early action usually leads to simpler, less disruptive solutions. Invite the rea
 
 ## Integration with Other Agents
 
-### Image Placeholder Agent
+### Image Placeholder Rule
 
-When you need a custom hero image or inline images:
+When you need a custom hero image or inline images, follow `.claude/rules/image-placeholders.md` using inputs like:
 
-```
-@image_placeholder_agent
-
-Generate a placeholder for:
-- image_id: blog_[slug]_hero
-- width: 1200
-- height: 630
-- page_context: blog_post_hero
-- semantic_role: hero_background
-- description_hint: "[describe the image you want]"
+```text
+image_id: blog_[slug]_hero
+width: 1200
+height: 630
+page_context: blog_post_hero
+semantic_role: hero_background
+description_hint: "[describe the image you want]"
 ```
 
 ### Image Generator Agent

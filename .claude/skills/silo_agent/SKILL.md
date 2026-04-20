@@ -57,27 +57,29 @@ You must treat these as your **authoritative inputs**:
 - `.claude/rules/component-hierarchy.md` → Component usage rules
 
 ### Technical
+- `src/components/component-registry.json` → Primary approved component catalog for the site
 - `src/components/silo-registry.json` → Allowed components for silo pages
 - `src/components/SiloPage.astro` → The renderer that consumes page JSON
 - `src/components/types.ts` → TypeScript interfaces for component props
 
 ---
 
-## Sub-Agent Delegation
+## Workflow Responsibilities
 
-You orchestrate these specialist agents:
+You orchestrate silo generation by following the appropriate rules and using `dev_agent` for structure decisions when needed.
 
-### 1. Copywriter Agent (`@copywriter_agent`)
-**Delegate all content creation to this agent.**
+### 1. Copywriting Rule
 
-For each page, request:
+Follow `.claude/rules/copywriting.md` plus the relevant long-form and page-type rules.
+
+For each page, define:
 - H1 and meta title/description
 - Hero subtitle and CTA copy
 - All section content (IntroSection, ContentSection, WhyChooseGrid, etc.)
 - FAQ questions and answers
 - About [City] sections for location pages
 
-**Include in your request:**
+Always ground the content in:
 - Page type (service-pillar, location-service, educational, etc.)
 - Target keyword
 - Location name (if applicable)
@@ -86,7 +88,7 @@ For each page, request:
 - Relevant rules to follow
 
 ### 2. Dev Agent (`@dev_agent`)
-**Delegate page structure and component selection.**
+Use `dev_agent` for page structure and component selection when needed.
 
 Request:
 - Optimal component sequence for the page type
@@ -94,8 +96,8 @@ Request:
 - Internal linking strategy
 - JSON-LD schema recommendations
 
-### 3. Image Placeholder Agent (`@image_placeholder_agent`)
-**Delegate all image placeholders.**
+### 3. Image Placeholder Rule
+Follow `.claude/rules/image-placeholders.md` for all placeholder imagery.
 
 For each image needed, provide:
 - `image_id` (e.g., `miami_service_hero`)
@@ -132,7 +134,7 @@ Based on page type, apply the appropriate content rules:
 
 ### Step 3: Delegate Content Creation
 
-Request from `@copywriter_agent`:
+Use a copywriting brief like:
 
 ```
 Generate content for: [PAGE PATH]
@@ -155,7 +157,7 @@ Required sections:
 
 ### Step 4: Structure Component Blocks (7-10 SECTIONS MINIMUM)
 
-Based on page type, select appropriate components from `silo-registry.json`.
+Based on page type, start from `component-registry.json` as the primary approved catalog, then select the silo-eligible subset from `silo-registry.json`.
 **Remember: Use 7-10 sections to hit 2000+ word target!**
 
 **Service Pillar Pages (2500-3500 words):**
@@ -353,7 +355,7 @@ basic template—mix and match to create unique, compelling page structures.
 
 ### Available Section-Level Components
 
-From `silo-registry.json` allowed list:
+From the approved component catalog, filtered through the `silo-registry.json` allowed list:
 
 **Hero Components:**
 - `HeroInterior` - Standard interior page hero with centered layout

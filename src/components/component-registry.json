@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "generatedBy": "component_foundation_agent",
+  "lastUpdated": "2026-04-20T00:00:00.000Z",
+  "notes": "Bootstrap registry for the approved component foundation. Update this file as the component library is created or refined.",
+  "entries": [
+    {
+      "name": "HeroPage",
+      "path": "src/components/HeroPage.astro",
+      "level": "section",
+      "role": "hero",
+      "status": "planned",
+      "topLevelEligible": true,
+      "propsSummary": ["title", "subtitle", "primaryCta", "secondaryCta", "image"],
+      "usageNotes": "Primary above-the-fold conversion section."
+    },
+    {
+      "name": "IntroSection",
+      "path": "src/components/IntroSection.astro",
+      "level": "section",
+      "role": "intro-content",
+      "status": "planned",
+      "topLevelEligible": true,
+      "propsSummary": ["title", "subtitle", "content", "image"],
+      "usageNotes": "Context-setting introduction near the top of the page."
+    },
+    {
+      "name": "WhyChooseGrid",
+      "path": "src/components/WhyChooseGrid.astro",
+      "level": "section",
+      "role": "benefits",
+      "status": "planned",
+      "topLevelEligible": true,
+      "propsSummary": ["title", "subtitle", "items"],
+      "usageNotes": "Outcome-oriented benefits or differentiators grid."
+    },
+    {
+      "name": "ServicesGrid",
+      "path": "src/components/ServicesGrid.astro",
+      "level": "section",
+      "role": "features",
+      "status": "planned",
+      "topLevelEligible": true,
+      "propsSummary": ["title", "subtitle", "items"],
+      "usageNotes": "Feature or service capability grid."
+    },
+    {
+      "name": "ProcessSteps",
+      "path": "src/components/ProcessSteps.astro",
+      "level": "section",
+      "role": "how-it-works",
+      "status": "planned",
+      "topLevelEligible": true,
+      "propsSummary": ["title", "subtitle", "steps"],
+      "usageNotes": "Step-by-step process clarification section."
+    },
+    {
+      "name": "TestimonialsSection",
+      "path": "src/components/TestimonialsSection.astro",
+      "level": "section",
+      "role": "social-proof",
+      "status": "planned",
+      "topLevelEligible": true,
+      "propsSummary": ["title", "subtitle", "items"],
+      "usageNotes": "Customer proof, reviews, and credibility section."
+    },
+    {
+      "name": "CaseStudySection",
+      "path": "src/components/CaseStudySection.astro",
+      "level": "section",
+      "role": "case-study",
+      "status": "planned",
+      "topLevelEligible": true,
+      "propsSummary": ["title", "subtitle", "problem", "solution", "outcome"],
+      "usageNotes": "Narrative proof section for concrete examples."
+    },
+    {
+      "name": "ContentSection",
+      "path": "src/components/ContentSection.astro",
+      "level": "section",
+      "role": "long-form-seo-content",
+      "status": "planned",
+      "topLevelEligible": true,
+      "propsSummary": ["title", "subtitle", "content"],
+      "usageNotes": "Long-form explanatory or SEO-rich content block."
+    },
+    {
+      "name": "FaqAccordion",
+      "path": "src/components/FaqAccordion.astro",
+      "level": "section",
+      "role": "faq",
+      "status": "planned",
+      "topLevelEligible": true,
+      "propsSummary": ["title", "subtitle", "items"],
+      "usageNotes": "Question-and-answer section for objections and SEO."
+    },
+    {
+      "name": "ComparisonSection",
+      "path": "src/components/ComparisonSection.astro",
+      "level": "section",
+      "role": "comparison",
+      "status": "planned",
+      "topLevelEligible": true,
+      "propsSummary": ["title", "subtitle", "items"],
+      "usageNotes": "Comparison or differentiation block."
+    },
+    {
+      "name": "RelatedLinksSection",
+      "path": "src/components/RelatedLinksSection.astro",
+      "level": "section",
+      "role": "related-links",
+      "status": "planned",
+      "topLevelEligible": true,
+      "propsSummary": ["title", "subtitle", "links"],
+      "usageNotes": "Internal linking section for discovery and SEO structure."
+    },
+    {
+      "name": "CTASection",
+      "path": "src/components/CTASection.astro",
+      "level": "section",
+      "role": "final-cta",
+      "status": "planned",
+      "topLevelEligible": true,
+      "propsSummary": ["title", "subtitle", "primaryCta", "secondaryCta"],
+      "usageNotes": "Bottom-of-page conversion prompt."
+    }
+  ]
+}

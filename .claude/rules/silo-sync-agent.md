@@ -10,6 +10,10 @@ alwaysApply: false
 
 This agent synchronizes the `SiloPage.astro` component registry with the available components in the project. Run this agent after adding, removing, or renaming components to keep the silo system up to date.
 
+`src/components/component-registry.json` is the primary approved component catalog for the site.
+
+`src/components/silo-registry.json` is the silo-specific filtered subset used by the silo runtime.
+
 ## When to Run This Agent
 
 - After running the **component documentation agent** (`generate component types`)
@@ -19,15 +23,18 @@ This agent synchronizes the `SiloPage.astro` component registry with the availab
 
 ## How It Works
 
-1. Reads `src/components/silo-registry.json` for the allowed/excluded component lists
-2. Updates the imports and `COMPONENT_MAP` in `SiloPage.astro`
-3. Ensures the silo workflow documentation stays accurate
+1. Reads `src/components/component-registry.json` for the broader approved component catalog
+2. Reads `src/components/silo-registry.json` for the silo-specific allowed/excluded component lists
+3. Updates the imports and `COMPONENT_MAP` in `SiloPage.astro`
+4. Ensures the silo workflow documentation stays accurate
 
 ## Registry File
 
 The source of truth for which components can be used in silo pages is:
 
 **`src/components/silo-registry.json`**
+
+This file should stay aligned with the broader approved component catalog in `src/components/component-registry.json`.
 
 ```json
 {
@@ -56,9 +63,10 @@ The source of truth for which components can be used in silo pages is:
 
 When invoked, perform these steps:
 
-### Step 1: Read the Registry
+### Step 1: Read the Registries
 
 ```bash
+cat src/components/component-registry.json
 cat src/components/silo-registry.json
 ```
 
@@ -99,7 +107,7 @@ Update `.claude/skills/silo_agent/SKILL.md` if the allowed component list or exa
 When the user wants to make a new component available for silo pages:
 
 1. **Add to registry**:
-   Edit `src/components/silo-registry.json`:
+   Ensure the component is approved in `src/components/component-registry.json`, then edit `src/components/silo-registry.json`:
    ```json
    {
      "allowed": [
@@ -119,10 +127,11 @@ When the user wants to make a new component available for silo pages:
 
 ## Removing a Component from Silo Pages
 
-1. Move the component from `allowed` to `excluded` in the registry
-2. Add an `excludeReasons` entry explaining why
-3. Run this sync agent
-4. Update any silo JSON files that use the component
+1. Keep the broader status accurate in `component-registry.json`
+2. Move the component from `allowed` to `excluded` in the silo registry
+3. Add an `excludeReasons` entry explaining why
+4. Run this sync agent
+5. Update any silo JSON files that use the component
 
 ## Validation
 
@@ -135,8 +144,9 @@ After syncing, verify:
 ## Integration with Component Documentation Agent
 
 The component documentation agent (`generate component types`) should be updated to also:
-1. Check if new components should be added to the silo registry
-2. Prompt the user: "Component X was added. Should it be available for silo pages? (y/n)"
-3. If yes, add to `silo-registry.json` and run this sync agent
+1. Keep `component-registry.json` current
+2. Check if new approved components should be added to the silo registry
+3. Prompt the user: "Component X was added. Should it be available for silo pages? (y/n)"
+4. If yes, add to `silo-registry.json` and run this sync agent
 
 Alternatively, run this agent manually after the documentation agent.
