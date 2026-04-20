@@ -21,7 +21,7 @@ This agent synchronizes the `SiloPage.astro` component registry with the availab
 
 1. Reads `src/components/silo-registry.json` for the allowed/excluded component lists
 2. Updates the imports and `COMPONENT_MAP` in `SiloPage.astro`
-3. Ensures the silos-agent documentation stays accurate
+3. Ensures the silo workflow documentation stays accurate
 
 ## Registry File
 
@@ -92,7 +92,7 @@ const COMPONENT_MAP: Record<string, any> = {
 
 ### Step 4: Update Documentation
 
-Update `.cursor/rules/silos-agent.mdc` with the current allowed component list if it has changed.
+Update `.claude/skills/silo_agent/SKILL.md` if the allowed component list or example component usage has materially changed.
 
 ## Adding a New Component to Silo Pages
 

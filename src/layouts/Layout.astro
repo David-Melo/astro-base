@@ -22,6 +22,8 @@ import { generateLocalBusinessSchema } from '../utils/structuredData';
 	jsonLd?: object[];
 	/** Optional Open Graph image URL. */
 	ogImage?: string;
+	/** Optional site name for social metadata. */
+	siteName?: string;
 }
 
 const { 
@@ -31,7 +33,8 @@ const {
 	robots = "index, follow",
 	keywords,
 	jsonLd = [],
-	ogImage
+	ogImage,
+	siteName = "Site Name"
 } = Astro.props;
 
 // Always generate canonical URL - use provided value or derive from current URL
@@ -67,7 +70,7 @@ const allSchemas = [localBusinessSchema, ...jsonLd];
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={currentUrl} />
-		<meta property="og:site_name" content="Florida Termite Guys" />
+		<meta property="og:site_name" content={siteName} />
 		<meta property="og:image" content={ogImage || defaultOgImage} />
 		<!-- Twitter Card -->
 		<meta name="twitter:card" content="summary_large_image" />

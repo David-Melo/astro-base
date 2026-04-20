@@ -13,7 +13,8 @@ Use this prompt to generate or regenerate the `SITE_OVERVIEW.md` file—a compre
 - A snapshot of current features, components, and content.
 - A roadmap of next steps and pending work.
 
-This is **different** from `.claude/rules/overview.mdc`, which is a technical project structure reference for AI agents.
+This is **different** from `.claude/rules/overview.md`, which is a generated technical project structure reference for AI agents.
+Neither summary document should override `docs/strategy_blueprint.md` on brand, audience, messaging, or structural intent.
 
 ## Sources of Truth
 
@@ -230,7 +231,7 @@ Deploy `dist/` directory to any static host:
 
 ## Quick Generate Command
 
-> "Generate the @SITE_OVERVIEW.md using @generate-site-overview.mdc. Read the strategy blueprint, scan the codebase, and create a comprehensive implementation summary."
+> "Generate `SITE_OVERVIEW.md` using `@generate-site-overview`. Read the strategy blueprint, scan the codebase, and create a comprehensive implementation summary."
 
 ## Example Usage
 

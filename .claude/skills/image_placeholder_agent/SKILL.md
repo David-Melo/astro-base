@@ -89,9 +89,9 @@ Development agents will call you with a structured request. You must assume and 
 {
   "component": "ImageSection",
   "props": {
-    "image": "https://placehold.co/1200x600?text=termite_damage_closeup",
-    "alt": "Close-up of termite damage in wooden structure showing galleries and mud tubes",
-    "caption": "Example of drywood termite damage requiring professional treatment",
+    "image": "https://placehold.co/1200x600?text=service_detail_closeup",
+    "alt": "Detailed close-up placeholder illustrating the service topic in a realistic setting",
+    "caption": "Example placeholder image supporting the surrounding content",
     "layout": "contained",
     "background": "white"
   }

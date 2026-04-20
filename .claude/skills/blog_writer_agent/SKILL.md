@@ -9,6 +9,10 @@ readonly: true
 
 The Blog Writer Agent creates SEO-optimized blog posts. Blog posts are stored as MDX files in the content collection and rendered automatically by the blog system.
 
+## Optional Workflow Prerequisite
+
+Use this workflow when the project has a blog content collection or when the user explicitly wants one created. If `src/content/blog/` and the related routes/templates do not exist yet, treat the blog system as optional rather than assumed.
+
 ## File Structure
 
 ### Where Blog Posts Live
@@ -56,8 +60,8 @@ draft: false
 | `description` | string | **Yes** | Meta description. 150-160 chars. Include primary keyword naturally. |
 | `publishedDate` | date | **Yes** | Format: `YYYY-MM-DD`. Used for sorting and display. |
 | `updatedDate` | date | No | Add when updating old posts. Format: `YYYY-MM-DD`. |
-| `author` | string | **Yes** | Default: `"Florida Termite Guys"`. Can be a team member name. |
-| `category` | enum | **Yes** | One of: `"Termite Treatment"`, `"Pest Control"`, `"Home Maintenance"`, `"Industry News"`, `"Tips & Guides"` |
+| `author` | string | **Yes** | Default: use the current site or brand name from the strategy docs. Can be a team member name. |
+| `category` | enum | **Yes** | Use project-appropriate categories defined by the site's content model. Common examples: `"Guides"`, `"Case Studies"`, `"Industry News"`, `"Tips & Guides"` |
 | `tags` | string[] | **Yes** | 3-7 relevant keywords for filtering and SEO. |
 | `readingTime` | number | **Yes** | Estimated minutes to read. Calculate: word count / 200. |
 | `featuredImage` | string | **Yes** | Path to image. Use `/assets/blog/` or existing `/assets/` images. |
@@ -77,15 +81,15 @@ Choose the most appropriate category:
 
 ```mdx
 ---
-title: "How to [Achieve X] in Florida"
-description: "Learn how to [achieve X] with our expert guide. Discover [key benefit] and protect your Florida home."
+title: "How to [Achieve X] in [Location]"
+description: "Learn how to [achieve X] with our expert guide and discover [key benefit] for your situation."
 publishedDate: 2026-01-27
 author: "Author"
 category: "Tips & Guides"
 tags:
   - "primary keyword"
   - "secondary keyword"
-  - "florida homes"
+  - "location modifier"
 readingTime: 7
 featuredImage: "/assets/blog/featured-image.webp"
 featuredImageAlt: "Description of the featured image"
@@ -132,7 +136,7 @@ When explaining a process:
 
 Wrap up the article with a summary and clear next steps for the reader.
 
-Mention Florida Termite Guys naturally and encourage the reader to take action (schedule an inspection, contact us, etc.).
+Mention the current brand naturally and encourage the reader to take the next relevant action.
 ```
 
 ## Markdown/MDX Syntax Guide
@@ -190,7 +194,7 @@ Reference images from the public folder:
 
 ```yaml
 featuredImage: "/assets/home/service_inspection.webp"
-featuredImageAlt: "Professional termite inspector examining wood structure"
+featuredImageAlt: "Professional service provider working in a real-world setting"
 ```
 
 ### Creating New Images with Placeholder Agent
@@ -201,18 +205,18 @@ When a blog post needs a custom image that doesn't exist:
 
    Request from the placeholder agent:
    ```
-   image_id: blog_termite_signs_hero
+   image_id: blog_primary_topic_hero
    width: 1200
    height: 630
    page_context: blog_post_hero
    semantic_role: hero_background
-   description_hint: "Close-up of termite damage on wooden beam, showing galleries and frass"
+   description_hint: "Detailed, on-brand image that supports the article's main topic"
    ```
 
 2. **For the frontmatter**, use a placehold.co URL temporarily:
    ```yaml
-   featuredImage: "https://placehold.co/1200x630?text=termite_signs_hero"
-   featuredImageAlt: "Close-up of termite damage showing galleries and wood destruction"
+   featuredImage: "https://placehold.co/1200x630?text=blog_primary_topic_hero"
+   featuredImageAlt: "On-brand placeholder image supporting the blog post topic"
    ```
 
 3. **After writing**, run the image generator workflow:
@@ -235,12 +239,12 @@ When a blog post needs a custom image that doesn't exist:
 - Include primary keyword near the beginning
 - Keep under 60 characters for full SERP display
 - Use power words: "Ultimate", "Complete", "Expert", "Essential"
-- Include location when relevant: "in Florida", "for Florida Homes"
+- Include location when relevant: "in [Location]", "for [Audience]"
 
 **Examples:**
-- "How to Choose the Best Termite Service for Your Florida Home"
-- "5 Warning Signs of Termite Damage Every Florida Homeowner Should Know"
-- "Complete Guide to Tentless Termite Treatment in South Florida"
+- "How to Choose the Right [Service] Provider in [Location]"
+- "5 Early Warning Signs Every [Audience] Should Know"
+- "Complete Guide to [Service or Topic] in [Location]"
 
 ### Meta Description Optimization
 
@@ -251,7 +255,7 @@ When a blog post needs a custom image that doesn't exist:
 
 **Example:**
 ```yaml
-description: "Discover what makes a great termite service in Florida. Learn the key factors to evaluate, questions to ask, and why local expertise matters."
+description: "Discover what makes a great service provider in your area. Learn the key factors to evaluate, questions to ask, and why local expertise matters."
 ```
 
 ### Content SEO
@@ -271,11 +275,11 @@ Use 3-7 tags per post:
 
 ```yaml
 tags:
-  - "termite inspection"
-  - "termite damage"
-  - "Florida homes"
-  - "home protection"
-  - "pest control"
+  - "primary keyword"
+  - "secondary keyword"
+  - "location modifier"
+  - "audience problem"
+  - "service category"
 ```
 
 ## Writing Guidelines
@@ -285,7 +289,7 @@ tags:
 - **Professional** but approachable
 - **Educational** without being condescending
 - **Confident** without being salesy
-- **Local** - reference Florida, South Florida, specific cities when relevant
+- **Local** - reference the project's real service area, target cities, or market context when relevant
 
 ### Paragraph Structure
 
@@ -302,14 +306,14 @@ tags:
 - Cite sources for statistics when possible
 - Answer the user's search intent completely
 
-### Florida-Specific Content
+### Local Relevance
 
-Always include Florida-relevant information:
-- Florida climate and termite species
-- Local regulations (WDO inspections, etc.)
-- South Florida specific concerns
-- Seasonal considerations
-- Local cities and areas we serve
+When location matters, include locally relevant information:
+- geography, climate, or market conditions that affect the topic
+- local regulations, compliance rules, or service expectations when applicable
+- city or region-specific concerns supported by the strategy docs
+- seasonal considerations when they materially affect the advice
+- target service areas referenced by the current site
 
 ## File Naming Convention
 
@@ -319,83 +323,83 @@ Always include Florida-relevant information:
 - Include primary keyword
 
 **Good examples:**
-- `best-termite-service.mdx`
-- `termite-damage-signs-florida.mdx`
-- `tentless-treatment-guide.mdx`
-- `wdo-inspection-explained.mdx`
+- `best-service-provider-[location].mdx`
+- `warning-signs-[topic].mdx`
+- `service-buyers-guide.mdx`
+- `what-to-know-before-hiring.mdx`
 
 **Bad examples:**
 - `Blog Post 1.mdx` (spaces, no keywords)
-- `termites.mdx` (too vague)
-- `the-ultimate-complete-guide-to-all-things-termite.mdx` (too long)
+- `post-1.mdx` (too vague)
+- `the-ultimate-complete-guide-to-everything-about-your-service-topic.mdx` (too long)
 
 ## Complete Example
 
-Here's a complete blog post following all guidelines:
+Here's a complete example blog post following all guidelines. This is an illustrative placeholder, not a project default:
 
 ```mdx
 ---
-title: "5 Early Warning Signs of Termite Damage in Florida Homes"
-description: "Learn to spot termite damage early with these 5 warning signs every Florida homeowner should know. Protect your home before it's too late."
+title: "5 Early Warning Signs Homeowners Should Not Ignore"
+description: "Learn how to spot early warning signs, what they mean, and when to call a professional before the problem gets worse."
 publishedDate: 2026-01-28
-author: "Florida Termite Guys"
+author: "Example Service Brand"
 category: "Tips & Guides"
 tags:
-  - "termite damage"
+  - "early warning signs"
   - "warning signs"
-  - "Florida homes"
-  - "termite inspection"
-  - "home protection"
+  - "home maintenance"
+  - "professional inspection"
+  - "preventive care"
 readingTime: 6
-featuredImage: "/assets/blog/termite-damage-signs.webp"
-featuredImageAlt: "Close-up of termite damage showing wood galleries and mud tubes"
+featuredImage: "/assets/blog/example-warning-signs.webp"
+featuredImageAlt: "Professional inspecting a problem area inside a home"
 draft: false
 ---
 
-Florida homeowners face a constant battle against termites. Our warm, humid climate creates perfect conditions for these destructive pests to thrive year-round. Knowing the early warning signs of termite damage can save you thousands of dollars in repairs.
+Small warning signs often appear long before a problem becomes expensive. Knowing what to look for helps homeowners act early, ask better questions, and get the right kind of professional help before damage spreads.
 
-## 1. Mud Tubes on Foundation Walls
+## 1. Repeated Signs Of Moisture Or Material Damage
 
-Subterranean termites build mud tubes to travel between their underground colonies and your home's wood. These pencil-sized tunnels appear on foundation walls, in crawl spaces, and along exterior surfaces.
+Recurring stains, swelling, warping, or material breakdown often point to a deeper issue. Even when the surface damage looks minor, repeated symptoms usually mean the underlying cause is still active.
 
-Check your foundation regularly, especially after rain. Fresh mud tubes appear moist and active. Break a small section and check back in a few days. If it's rebuilt, you have an active infestation.
+Pay attention to where the issue returns. Patterns around windows, trim, exterior transitions, or utility penetrations can help a professional diagnose the real source faster.
 
-## 2. Hollow-Sounding Wood
+## 2. Changes In Sound, Texture, Or Stability
 
-Termites eat wood from the inside out, leaving a thin veneer that looks normal. Tap on wooden surfaces around your home. Damaged wood sounds hollow or papery compared to solid wood.
+Materials that suddenly feel soft, hollow, loose, or brittle may be signaling hidden deterioration. A visual check is useful, but touch and sound often reveal issues that are not obvious at first glance.
 
 Pay special attention to:
 
 - Window and door frames
-- Baseboards and crown molding
-- Wood siding and trim
-- Deck posts and beams
+- Baseboards and trim
+- Exterior transitions
+- High-wear structural touchpoints
 
-## 3. Discarded Wings Near Windows
+## 3. Debris, Dust, Or Residue That Keeps Reappearing
 
-Termite swarmers shed their wings after finding a mate. Finding small, translucent wings near windows, doors, or light fixtures indicates termites are trying to establish a new colony in your home.
+If you repeatedly notice unusual dust, residue, flakes, or debris near the same area, do not assume it is cosmetic. Repeating evidence usually means the underlying condition has not been resolved.
 
-Swarming typically occurs in spring and fall in Florida. A single swarm event means termites are already nearby.
+Document when it shows up and what the surrounding conditions look like. Timing, weather, and room usage can all provide valuable context during inspection.
 
-## 4. Frass (Termite Droppings)
+## 4. Surface Changes That Look Cosmetic But Are Not
 
-Drywood termites push their droppings out of small holes in infested wood. This frass looks like small, dark pellets or sawdust piles.
+Bubbling finishes, peeling paint, staining, and hairline cracks are easy to dismiss. In many cases, though, these are the visible symptoms of a larger issue developing below the surface.
 
-Finding frass beneath wooden furniture, along baseboards, or in attic spaces signals an active drywood termite infestation that needs immediate attention.
+If these signs appear in an area without an obvious explanation, schedule a professional assessment instead of waiting for the problem to become more visible.
 
-## 5. Bubbling or Peeling Paint
+## 5. A Problem Area That Keeps Expanding
 
-Moisture from termite activity can cause paint to bubble or peel. This often resembles water damage but appears in areas without plumbing or known water issues.
+When the same area keeps getting worse despite quick fixes, there is usually a root cause that needs proper diagnosis. Repainting, sealing, or patching may hide the symptom without solving the issue.
 
-If you notice unexplained paint damage, especially on window frames or exterior wood, investigate further for termite activity.
+Track whether the problem is spreading, reappearing, or affecting nearby materials. That information helps guide the next step.
 
-## What to Do If You Spot These Signs
+## What To Do If You Spot These Signs
 
-Don't wait if you notice any of these warning signs. Termite damage grows exponentially worse over time. A professional inspection can confirm the type of termites and extent of damage.
+Do not wait if you notice these warning signs. A professional inspection can confirm the root cause, explain the level of urgency, and recommend the most effective next step.
 
-Florida Termite Guys offers free inspections throughout South Florida. Our experienced technicians know exactly where to look and can recommend the most effective treatment for your situation.
+Use the closing section to connect the reader with the site's actual offer, service area, and conversion goal.
 
-Early detection is your best defense against costly repairs. Schedule your inspection today and protect your Florida home.
+Early action usually leads to simpler, less disruptive solutions. Invite the reader to contact the business using the current site's real CTA.
 ```
 
 ## Checklist Before Publishing
@@ -414,7 +418,7 @@ Early detection is your best defense against costly repairs. Schedule your inspe
 - [ ] Primary keyword appears in first 100 words
 - [ ] Content is at least 1,500 words
 - [ ] Paragraphs are 2-4 sentences
-- [ ] Includes Florida-specific information
+- [ ] Includes locally relevant information when the topic calls for it
 - [ ] Internal links to services/other posts where relevant
 - [ ] File name is lowercase with hyphens
 - [ ] Run `yarn dev` and verify post renders correctly

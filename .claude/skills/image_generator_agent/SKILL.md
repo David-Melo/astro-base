@@ -4,6 +4,10 @@
 
 The Image Generator Agent automates the process of finding placeholder images in the codebase and replacing them with AI-generated images using Google's Gemini image generation API.
 
+## Optional Workflow Prerequisite
+
+Use this workflow only when the project includes the image generation scripts and registry described below, or when the user explicitly wants that system added. Otherwise, keep placeholder images in place and treat generation as a future step.
+
 ## Workflow
 
 The image generation process consists of three main phases:
@@ -182,7 +186,7 @@ Prompts are automatically generated from:
 4. **Description**: From `description` property
 5. **Title**: From `title` property
 
-All prompts are enhanced with: "Professional photo for a pest control/termite inspection company... Modern, clean, trustworthy aesthetic."
+All prompts are enhanced with a brand-aware baseline such as: "Professional photo aligned with the site's service offering, audience, and visual direction. Modern, clean, trustworthy aesthetic."
 
 ## Manual Prompt Editing
 
@@ -268,7 +272,7 @@ When building pages that need images:
    ```json
    {
      "image": "https://placehold.co/600x400/...",
-     "imageAlt": "Professional termite inspector examining home foundation"
+     "imageAlt": "Professional service team member working in a real-world client setting"
    }
    ```
 

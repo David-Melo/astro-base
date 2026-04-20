@@ -30,31 +30,26 @@ export interface BlogPostData {
  * Update this object with actual business details.
  */
 export const BUSINESS_INFO = {
-	name: 'The Termite Guys',
-	legalName: 'Florida Termite Guys, LLC',
-	description: 'Professional tentless termite treatment and pest control services in South Florida. Licensed and insured termite specialists.',
-	url: 'https://floridatermiteguys.com',
-	logo: 'https://floridatermiteguys.com/assets/logo.png',
-	telephone: '+1-305-964-5880',
-	email: 'info@floridatermiteguys.com',
+	name: 'Site Name',
+	legalName: 'Site Legal Name',
+	description: 'Replace this structured data with the current business description before launch.',
+	url: 'https://site.com',
+	logo: 'https://site.com/assets/logo.png',
+	telephone: '+1-000-000-0000',
+	email: 'info@site.com',
 	address: {
-		streetAddress: '11785 SW 187th ST',
-		addressLocality: 'Miami',
-		addressRegion: 'FL',
-		postalCode: '33177',
+		streetAddress: '123 Main St',
+		addressLocality: 'City',
+		addressRegion: 'ST',
+		postalCode: '00000',
 		addressCountry: 'US'
 	},
 	geo: {
-		latitude: 25.5961,
-		longitude: -80.3797
+		latitude: 0,
+		longitude: 0
 	},
 	areaServed: [
-		'Miami',
-		'Fort Lauderdale',
-		'West Palm Beach',
-		'Broward County',
-		'Miami-Dade County',
-		'Palm Beach County'
+		'Primary Service Area'
 	],
 	serviceArea: {
 		'@type': 'GeoCircle',
@@ -63,7 +58,7 @@ export const BUSINESS_INFO = {
 			'latitude': 25.5961,
 			'longitude': -80.3797
 		},
-		'geoRadius': '50' // 50 mile radius
+		'geoRadius': '50'
 	},
 	priceRange: '$$$',
 	openingHours: [
@@ -72,9 +67,9 @@ export const BUSINESS_INFO = {
 	],
 	sameAs: [
 		// TODO: Add social media profiles
-		// 'https://www.facebook.com/floridatermiteguys',
-		// 'https://www.instagram.com/floridatermiteguys',
-		// 'https://www.linkedin.com/company/floridatermiteguys'
+		// 'https://www.facebook.com/your-brand',
+		// 'https://www.instagram.com/your-brand',
+		// 'https://www.linkedin.com/company/your-brand'
 	]
 };
 

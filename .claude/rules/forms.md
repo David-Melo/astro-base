@@ -5,6 +5,8 @@ alwaysApply: false
 
 This guide covers how to integrate contact forms and email submission with the centralized mailer service.
 
+When implementing the frontend form experience, also follow `.claude/rules/accessibility.md` for labels, helper text, validation messaging, focus handling, and keyboard accessibility.
+
 ## Usage
 
 This is designed to go into an astro API route. one backend api route should be able to handle any number of forms.

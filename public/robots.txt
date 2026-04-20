@@ -1,4 +1,4 @@
-# robots.txt for Florida Termite Guys
+# robots.txt for the current site
 
 User-agent: *
 Allow: /
@@ -9,4 +9,4 @@ Disallow: /silo-debug
 Disallow: /content-section-demo
 
 # Sitemap
-Sitemap: https://floridatermiteguys.com/sitemap.xml
+Sitemap: https://site.com/sitemap.xml

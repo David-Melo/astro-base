@@ -1,0 +1,139 @@
+{
+  "formId": "website_intake_v2",
+  "version": "2.1.0",
+  "title": "Website Strategy Intake",
+  "description": "Reference schema for the external client-facing intake form. Completed client answers belong in docs/client_intake_form.json and should preserve these field IDs.",
+  "submissionContract": {
+    "responseType": "object",
+    "responseKeyRule": "Each answer should be stored under the matching question `id`.",
+    "emptyValueRule": "Optional unanswered fields may be null, false, an empty string, or an empty array.",
+    "notes": [
+      "This schema is reference material for the framework and should live outside the project docs answer data.",
+      "The actual completed intake response is the source of truth for each client project.",
+      "Redesign-only questions may be left blank for greenfield projects."
+    ]
+  },
+  "sections": [
+    {
+      "id": "project_basics",
+      "title": "Project Basics",
+      "description": "Core identity, project type, and who is involved in the project.",
+      "questions": [
+        { "id": "projectType", "label": "Is this a brand-new website or a redesign of an existing one?", "type": "single_select", "required": true, "options": ["Brand-new website", "Redesign of an existing website", "Not sure yet"] },
+        { "id": "businessName", "label": "What is the business name that should appear on the website?", "type": "short_text", "required": true },
+        { "id": "legalOrParentName", "label": "If the legal company name is different, what is it?", "type": "short_text", "required": false },
+        { "id": "primaryContactName", "label": "Who is the main point of contact for this project?", "type": "short_text", "required": true },
+        { "id": "primaryContactEmail", "label": "What is the best email for project communication?", "type": "email", "required": false },
+        { "id": "primaryContactPhone", "label": "What is the best phone number for project communication, if needed?", "type": "phone", "required": false },
+        { "id": "launchWindow", "label": "Do you have a preferred launch window or deadline?", "type": "long_text", "required": false }
+      ]
+    },
+    {
+      "id": "business_profile",
+      "title": "Business Profile",
+      "description": "What the business does, who it serves, and why it is different.",
+      "questions": [
+        { "id": "oneSentenceSummary", "label": "In one or two sentences, what does the business do?", "type": "long_text", "required": true },
+        { "id": "taglineOrCorePromise", "label": "Do you already have a tagline, slogan, or core promise you want us to preserve or improve?", "type": "long_text", "required": false },
+        { "id": "originStory", "label": "How did the business start, and what should people understand about its story?", "type": "long_text", "required": false },
+        { "id": "primaryServices", "label": "What are your primary services, products, or offers?", "type": "list", "required": true },
+        { "id": "priorityOffers", "label": "Which services, products, or offers should the website prioritize most?", "type": "list", "required": true },
+        { "id": "audienceSegments", "label": "Who are your ideal customers or audience segments?", "type": "long_text", "required": true },
+        { "id": "primaryPainPoints", "label": "What problems, frustrations, or goals bring people to you?", "type": "long_text", "required": true },
+        { "id": "topObjections", "label": "What objections or hesitations do prospects usually have before they buy or contact you?", "type": "long_text", "required": false },
+        { "id": "keyDifferentiators", "label": "What makes your business different from competitors?", "type": "long_text", "required": true },
+        { "id": "trustSignals", "label": "What trust signals should the website highlight? Examples: years in business, certifications, awards, reviews, guarantees, licensing, partners, or notable clients.", "type": "long_text", "required": false },
+        { "id": "mustAvoidClaims", "label": "Are there any claims, offers, or topics we should avoid or be careful about?", "type": "long_text", "required": false }
+      ]
+    },
+    {
+      "id": "location_and_service_area",
+      "title": "Location And Service Area",
+      "description": "Geographic, operational, and local-market context.",
+      "questions": [
+        { "id": "businessAddress", "label": "What is the main business address?", "type": "short_text", "required": false },
+        { "id": "serviceAreas", "label": "Which cities, neighborhoods, regions, or states do you serve?", "type": "list", "required": true },
+        { "id": "geoPriorityOrder", "label": "Which service areas matter most for lead generation or SEO?", "type": "list", "required": false },
+        { "id": "locationSpecificContext", "label": "Are there any local market conditions, seasonal factors, or regional details we should understand?", "type": "long_text", "required": false },
+        { "id": "showAddressOnSite", "label": "Should the business address appear publicly on the website?", "type": "boolean", "required": true },
+        { "id": "showMapOnSite", "label": "Should the website include a map or location embed?", "type": "boolean", "required": false }
+      ]
+    },
+    {
+      "id": "goals_and_conversion",
+      "title": "Goals And Conversion",
+      "description": "Business goals, lead capture priorities, and public contact details.",
+      "questions": [
+        { "id": "primaryBusinessGoal", "label": "What is the main business outcome this website should support?", "type": "single_select", "required": true, "options": ["Generate more phone calls", "Generate more form leads", "Generate quote or estimate requests", "Generate booked appointments", "Support ecommerce sales", "Improve trust and brand perception", "Educate prospects before contact", "Other"] },
+        { "id": "secondaryGoals", "label": "Are there any secondary goals the website should support?", "type": "list", "required": false },
+        { "id": "primaryConversionActions", "label": "What actions should visitors take most often on the site?", "type": "list", "required": true },
+        { "id": "leadRouting", "label": "Where should leads go? Include email recipients, phone numbers, CRM, scheduling links, or routing notes.", "type": "long_text", "required": true },
+        { "id": "leadNotificationEmail", "label": "What email should receive form leads or quote requests?", "type": "email", "required": false },
+        { "id": "leadNotificationPhone", "label": "What phone number should receive call leads or urgent lead follow-up?", "type": "phone", "required": false },
+        { "id": "publicContactDetails", "label": "Which contact methods should be shown publicly on the site?", "type": "long_text", "required": true },
+        { "id": "publicPhoneNumbers", "label": "Which phone numbers should appear publicly on the website?", "type": "list", "required": false },
+        { "id": "showPhoneOnSite", "label": "Should a phone number be shown publicly on the website?", "type": "boolean", "required": false },
+        { "id": "publicEmailAddresses", "label": "Which email addresses should appear publicly on the website?", "type": "list", "required": false },
+        { "id": "showEmailOnSite", "label": "Should an email address be shown publicly on the website?", "type": "boolean", "required": false },
+        { "id": "formsNeeded", "label": "What kinds of forms does the website need? Examples: contact, quote request, consultation request, newsletter, intake, support.", "type": "list", "required": false },
+        { "id": "conversionConstraints", "label": "Are there any lead-quality filters, required questions, compliance notes, or routing constraints we should know about?", "type": "long_text", "required": false }
+      ]
+    },
+    {
+      "id": "brand_and_design_direction",
+      "title": "Brand And Design Direction",
+      "description": "How the site should feel, look, and avoid looking.",
+      "questions": [
+        { "id": "brandPersonality", "label": "How should the brand feel to visitors? Examples: high-trust, premium, friendly, bold, calm, modern, playful.", "type": "long_text", "required": true },
+        { "id": "toneOfVoicePreferences", "label": "How should the website sound? Examples: direct, warm, authoritative, conversational, polished, technical.", "type": "long_text", "required": true },
+        { "id": "primaryBrandColor", "label": "What is the primary brand color or main color direction?", "type": "short_text", "required": false },
+        { "id": "secondaryBrandColor", "label": "What is the secondary or accent brand color or direction?", "type": "short_text", "required": false },
+        { "id": "primaryBrandColorHexHint", "label": "If you know it, what is the primary brand color hex code?", "type": "short_text", "required": false },
+        { "id": "secondaryBrandColorHexHint", "label": "If you know it, what is the secondary brand color hex code?", "type": "short_text", "required": false },
+        { "id": "colorDirectionNotes", "label": "Describe any color preferences, palette direction, or colors to avoid if exact brand colors are not locked yet.", "type": "long_text", "required": false },
+        { "id": "logoAndBrandAssets", "label": "Do you have a logo, fonts, photos, or brand guidelines we should use?", "type": "long_text", "required": false },
+        { "id": "designInspirationUrls", "label": "Share websites whose design, layout, or feel you like. Include URLs.", "type": "list", "required": false },
+        { "id": "mustAvoidDesignChoices", "label": "Are there any design styles, colors, layouts, or competitor looks you want us to avoid?", "type": "long_text", "required": false },
+        { "id": "imageStylePreferences", "label": "What kind of imagery should the site use? Examples: real team photos, lifestyle photography, product closeups, illustrations, minimal placeholders.", "type": "long_text", "required": false }
+      ]
+    },
+    {
+      "id": "content_and_information_architecture",
+      "title": "Content And Information Architecture",
+      "description": "What the site needs to say, what pages it needs, and what material already exists.",
+      "questions": [
+        { "id": "requiredPages", "label": "What pages or sections do you know the site must include?", "type": "list", "required": true },
+        { "id": "homepagePriorities", "label": "What should the homepage communicate first and most clearly?", "type": "long_text", "required": true },
+        { "id": "faqTopics", "label": "What questions do customers ask most often that the website should answer?", "type": "list", "required": false },
+        { "id": "contentSourcesAvailable", "label": "What existing materials do you already have? Examples: brochures, old website copy, service descriptions, reviews, case studies, videos, forms, PDFs.", "type": "long_text", "required": false },
+        { "id": "requiredDisclaimers", "label": "Are there any legal notices, disclaimers, licensing statements, or required copy blocks that must appear on the site?", "type": "long_text", "required": false },
+        { "id": "approvalsAndStakeholders", "label": "Who needs to review or approve strategy, design, copy, or launch decisions?", "type": "long_text", "required": false }
+      ]
+    },
+    {
+      "id": "seo_and_discovery",
+      "title": "SEO And Discovery",
+      "description": "Search intent, local relevance, and discoverability priorities.",
+      "questions": [
+        { "id": "primaryKeywords", "label": "What are the most important search terms or services you want the website to rank for?", "type": "list", "required": true },
+        { "id": "secondaryKeywords", "label": "What supporting keywords, modifiers, or related searches also matter?", "type": "list", "required": false },
+        { "id": "competitorsOrReferenceSites", "label": "Who are your main competitors or comparison sites online?", "type": "list", "required": false },
+        { "id": "seoPriorities", "label": "What matters most for SEO right now? Examples: local rankings, service pages, content depth, page speed, map visibility, topical authority.", "type": "long_text", "required": false },
+        { "id": "proofAndAuthoritySources", "label": "What facts, credentials, stats, case studies, or evidence can we use to build trust and authority?", "type": "long_text", "required": false }
+      ]
+    },
+    {
+      "id": "redesign_only",
+      "title": "Redesign Only",
+      "description": "Leave these blank for brand-new websites.",
+      "showWhen": { "projectType": "Redesign of an existing website" },
+      "questions": [
+        { "id": "currentWebsiteUrl", "label": "What is the current website URL?", "type": "url", "required": false },
+        { "id": "mustPreservePagesOrUrls", "label": "Are there pages, URLs, or sections that absolutely must be preserved?", "type": "long_text", "required": false },
+        { "id": "mustPreserveContent", "label": "Is there any existing copy, messaging, or SEO content that must not be lost?", "type": "long_text", "required": false },
+        { "id": "currentSiteProblems", "label": "What is not working on the current site today?", "type": "long_text", "required": false },
+        { "id": "existingAssetsAndAccess", "label": "What existing assets or access do you already have? Examples: CMS access, analytics, search console, image library, sitemap export, copy docs.", "type": "long_text", "required": false }
+      ]
+    }
+  ]
+}

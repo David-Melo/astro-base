@@ -35,7 +35,7 @@ Components must include a JSDoc block at the top of the frontmatter script.
 
 ### Required Fields:
 - `@component`: The name of the component.
-- `@level`: Either `section` or `atom`. See `component-hierarchy.mdc` for definitions.
+- `@level`: Either `section` or `atom`. See `component-hierarchy.md` for definitions.
 - `@description`: A concise explanation of what the component does.
 - `@usage`: A code snippet showing how to use the component.
 - `@semantic`: A breakdown of the component's role in the marketing and SEO strategy.
