@@ -36,7 +36,11 @@ Then read these implementation rules:
 - `.claude/rules/component-system.md`
 - `.claude/rules/component-hierarchy.md`
 - `.claude/rules/component-documentation.md`
+- `.claude/rules/image-placeholders.md`
+- `.claude/rules/forms-integration`
+- `.claude/rules/copywritting`
 - `.claude/rules/brand-colors.md`
+- `.claude/rules/forms.md`
 - `.claude/rules/typography-system.md`
 - `.claude/rules/icons.md`
 - `.claude/rules/accessibility.md`
